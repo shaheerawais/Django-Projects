@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Listings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .course {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .course h2 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .course .meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .course .active {
+            color: green;
+            font-weight: bold;
+        }
+        .course .inactive {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Courses</h1>
+        {% for course in courses %}
+            <div class="course">
+                <h2>{{ course.title }}</h2>
+                <p class="meta">
+                    Instructor: {{ course.instructor.name }}<br>
+                    Starts: {{ course.start_date }}<br>
+                    Status:
+                    {% if course.is_active %}
+                        <span class="active">Active</span>
+                    {% else %}
+                        <span class="inactive">Inactive</span>
+                    {% endif %}
+                </p>
+            </div>
+        {% empty %}
+            <p>No courses found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

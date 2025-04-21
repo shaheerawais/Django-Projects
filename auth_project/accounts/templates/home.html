@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Welcome to the Home Page</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, <strong>{{ user.username }}</strong>!</p>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to continue.</p>
+    {% endif %}
+</div>
+{% endblock %}
